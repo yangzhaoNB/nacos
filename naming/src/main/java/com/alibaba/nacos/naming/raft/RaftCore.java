@@ -428,6 +428,9 @@ public class RaftCore {
 
     }
 
+    /**
+     * master 选举
+     */
     public static class MasterElection implements Runnable {
         @Override
         public void run() {
@@ -470,6 +473,7 @@ public class RaftCore {
             for (final String server : peers.allServersWithoutMySelf()) {
                 final String url = buildURL(server, API_VOTE);
                 try {
+                    // 回调，方法执行成功过后执行
                     HttpClient.asyncHttpPost(url, null, params, new AsyncCompletionHandler<Integer>() {
                         @Override
                         public Integer onCompleted(Response response) throws Exception {
