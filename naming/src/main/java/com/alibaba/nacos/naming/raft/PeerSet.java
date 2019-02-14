@@ -44,6 +44,10 @@ public class PeerSet {
     public PeerSet() {
     }
 
+    /**
+     * 获取leader
+     * @return
+     */
     public RaftPeer getLeader() {
         if (STANDALONE_MODE) {
             return local();
